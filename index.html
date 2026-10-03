@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Madiha — Just Me</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+
+    /* =========================
+       BASIC
+    ========================= */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --background: #050611;
+      --background2: #0b0d20;
+
+      --white: #f4f1ff;
+      --muted: #aaa8bb;
+
+      --lavender: #c8b8ff;
+      --purple: #8f7bff;
+
+      --glass: rgba(255,255,255,0.055);
+      --border: rgba(255,255,255,0.12);
+    }
+
+    body {
+      min-height: 100vh;
+
+      background:
+        radial-gradient(
+          circle at 20% 20%,
+          rgba(125, 105, 230, 0.16),
+          transparent 30%
+        ),
+
+        radial-gradient(
+          circle at 80% 70%,
+          rgba(80, 100, 210, 0.12),
+          transparent 35%
+        ),
+
+        linear-gradient(
+          135deg,
+          var(--background),
+          var(--background2)
+        );
+
+      color: var(--white);
+
+      font-family: "Inter", sans-serif;
+      font-weight: 300;
+
+      overflow-x: hidden;
+    }
+
+
+    /* =========================
+       LIVE STAR SKY
+    ========================= */
+
+    #starSky {
+      position: fixed;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+
+      overflow: hidden;
+
+      pointer-events: none;
+
+      z-index: 0;
+    }
+
+
+    .star {
+      position: absolute;
+
+      width: 2px;
+      height: 2px;
+
+      background: white;
+
+      border-radius: 50%;
+
+      box-shadow:
+        0 0 5px white,
+        0 0 10px rgba(190,180,255,0.7);
+
+      animation:
+        twinkle var(--twinkleTime)
+        ease-in-out infinite;
+    }
+
+
+    @keyframes twinkle {
+
+      0% {
+        opacity: 0.15;
+        transform: scale(0.6);
+      }
+
+      25% {
+        opacity: 0.4;
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.5);
+      }
+
+      75% {
+        opacity: 0.5;
+      }
+
+      100% {
+        opacity: 0.15;
+        transform: scale(0.6);
+      }
+
+    }
+
+
+    /* =========================
+       SHOOTING STAR
+    ========================= */
+
+    .shooting-star {
+
+      position: absolute;
+
+      width: 140px;
+      height: 2px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          white,
+          rgba(200,190,255,0.9),
+          transparent
+        );
+
+      border-radius: 50%;
+
+      transform: rotate(-35deg);
+
+      filter:
+        drop-shadow(
+          0 0 7px white
+        );
+
+      animation:
+        shoot 1.8s linear forwards;
+    }
+
+
+    @keyframes shoot {
+
+      0% {
+        opacity: 0;
+
+        transform:
+          translate(0,0)
+          rotate(-35deg);
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      80% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+
+        transform:
+          translate(-500px,350px)
+          rotate(-35deg);
+      }
+
+    }
+
+
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    nav {
+
+      position: fixed;
+
+      top: 20px;
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      width: min(90%, 760px);
+
+      padding: 15px 25px;
+
+      display: flex;
+
+      justify-content: center;
+
+      gap: 30px;
+
+      background:
+        rgba(5,6,17,0.55);
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 50px;
+
+      backdrop-filter:
+        blur(18px);
+
+      -webkit-backdrop-filter:
+        blur(18px);
+
+      z-index: 100;
+    }
+
+
+    nav a {
+
+      color: var(--muted);
+
+      text-decoration: none;
+
+      font-size: 12px;
+
+      letter-spacing: 0.5px;
+
+      transition: 0.3s;
+    }
+
+
+    nav a:hover {
+
+      color: white;
+
+      text-shadow:
+        0 0 10px
+        rgba(210,200,255,0.7);
+    }
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+
+      position: relative;
+
+      z-index: 2;
+
+      min-height: 100vh;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      text-align: center;
+
+      padding: 100px 20px;
+    }
+
+
+    .hero-content {
+      animation: heroAppear 2s ease forwards;
+    }
+
+
+    @keyframes heroAppear {
+
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+    }
+
+
+    /* =========================
+       MOON
+    ========================= */
+
+    .moon {
+
+      width: 115px;
+      height: 115px;
+
+      margin: 0 auto 40px;
+
+      border-radius: 50%;
+
+      position: relative;
+
+      background:
+        radial-gradient(
+          circle at 35% 30%,
+          #ffffff,
+          #ded8f7 50%,
+          #aaa4ce
+        );
+
+      box-shadow:
+
+        0 0 20px
+        rgba(230,225,255,0.7),
+
+        0 0 50px
+        rgba(180,170,255,0.4),
+
+        0 0 120px
+        rgba(150,130,255,0.2);
+    }
+
+
+    .moon::before {
+
+      content: "";
+
+      position: absolute;
+
+      width: 15px;
+      height: 15px;
+
+      border-radius: 50%;
+
+      background: rgba(130,125,160,0.18);
+
+      top: 25px;
+      left: 30px;
+
+      box-shadow:
+        25px 20px 0 rgba(130,125,160,0.13),
+        15px 55px 0 rgba(130,125,160,0.12),
+        -5px 40px 0 rgba(130,125,160,0.1);
+    }
+
+
+    /* =========================
+       HERO TEXT
+    ========================= */
+
+    .hero h1 {
+
+      font-family:
+        "Cormorant Garamond",
+        serif;
+
+      font-size:
+        clamp(80px, 16vw, 160px);
+
+      font-weight: 400;
+
+      line-height: 0.8;
+
+      letter-spacing: 4px;
+
+      text-shadow:
+        0 0 30px
+        rgba(210,200,255,0.12);
+    }
+
+
+    .hero-subtitle {
+
+      margin-top: 35px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+
+      letter-spacing: 3px;
+
+      text-transform: lowercase;
+    }
+
+
+    .scroll-text {
+
+      margin-top: 75px;
+
+      color: #68687c;
+
+      font-size: 10px;
+
+      letter-spacing: 4px;
+
+      animation:
+        breathing 2.5s
+        ease-in-out infinite;
+    }
+
+
+    @keyframes breathing {
+
+      0%,100% {
+        opacity: .3;
+      }
+
+      50% {
+        opacity: .9;
+      }
+
+    }
+
+
+    /* =========================
+       SECTIONS
+    ========================= */
+
+    section {
+
+      position: relative;
+
+      z-index: 2;
+
+      width: min(950px, 90%);
+
+      margin: auto;
+
+      padding: 110px 0;
+    }
+
+
+    .section-title {
+
+      font-family:
+        "Cormorant Garamond",
+        serif;
+
+      font-size: 55px;
+
+      font-weight: 400;
+
+      margin-bottom: 25px;
+    }
+
+
+    .section-description {
+
+      color: var(--muted);
+
+      max-width: 600px;
+
+      font-size: 14px;
+
+      line-height: 2;
+    }
+
+
+    /* =========================
+       GLASS CARDS
+    ========================= */
+
+    .cards {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 18px;
+
+      margin-top: 45px;
+    }
+
+
+    .card {
+
+      padding: 32px;
+
+      min-height: 190px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255,255,255,0.07),
+          rgba(255,255,255,0.025)
+        );
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 24px;
+
+      backdrop-filter:
+        blur(16px);
+
+      -webkit-backdrop-filter:
+        blur(16px);
+
+      transition:
+        transform .4s,
+        border .4s,
+        background .4s;
+
+    }
+
+
+    .card:hover {
+
+      transform:
+        translateY(-8px);
+
+      border-color:
+        rgba(200,185,255,0.35);
+
+      background:
+        rgba(255,255,255,0.08);
+
+      box-shadow:
+        0 15px 50px
+        rgba(0,0,0,0.2);
+    }
+
+
+    .card-label {
+
+      color: var(--lavender);
+
+      font-size: 10px;
+
+      letter-spacing: 2px;
+
+      text-transform: uppercase;
+    }
+
+
+    .card h3 {
+
+      font-family:
+        "Cormorant Garamond",
+        serif;
+
+      font-size: 29px;
+
+      font-weight: 500;
+
+      margin:
+        15px 0 10px;
+    }
+
+
+    .card p {
+
+      color: var(--muted);
+
+      font-size: 13px;
+
+      line-height: 1.8;
+    }
+
+
+    /* =========================
+       THOUGHT
+    ========================= */
+
+    .thought {
+
+      margin-top: 45px;
+
+      padding: 50px;
+
+      border-left:
+        1px solid var(--lavender);
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(200,185,255,0.08),
+          transparent
+        );
+    }
+
+
+    .thought p {
+
+      font-family:
+        "Cormorant Garamond",
+        serif;
+
+      font-size:
+        clamp(27px, 4vw, 42px);
+
+      line-height: 1.35;
+    }
+
+
+    .thought small {
+
+      display: block;
+
+      margin-top: 25px;
+
+      color: var(--muted);
+
+      letter-spacing: 2px;
+    }
+
+
+    /* =========================
+       DREAMS
+    ========================= */
+
+    .dreams {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 12px;
+
+      margin-top: 40px;
+    }
+
+
+    .dream {
+
+      padding: 13px 20px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 50px;
+
+      color: var(--muted);
+
+      font-size: 12px;
+
+      transition: .3s;
+    }
+
+
+    .dream:hover {
+
+      color: white;
+
+      border-color:
+        var(--lavender);
+
+      box-shadow:
+        0 0 20px
+        rgba(190,175,255,0.1);
+
+      transform:
+        translateY(-4px);
+    }
+
+
+    /* =========================
+       LETTER
+    ========================= */
+
+    .letter {
+
+      margin-top: 40px;
+
+      padding: 50px;
+
+      border-radius: 25px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255,255,255,0.07),
+          rgba(255,255,255,0.025)
+        );
+
+      border:
+        1px solid var(--border);
+
+      backdrop-filter:
+        blur(16px);
+    }
+
+
+    .letter p {
+
+      color: #c6c3d2;
+
+      font-size: 14px;
+
+      line-height: 2;
+
+      margin-bottom: 18px;
+    }
+
+
+    .signature {
+
+      margin-top: 25px;
+
+      font-family:
+        "Cormorant Garamond",
+        serif;
+
+      font-size: 30px;
+
+      color: var(--lavender);
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+
+      position: relative;
+
+      z-index: 2;
+
+      text-align: center;
+
+      padding: 80px 20px;
+
+      color: #646376;
+
+      font-size: 10px;
+
+      letter-spacing: 3px;
+    }
+
+
+    /* =========================
+       SCROLL REVEAL
+    ========================= */
+
+    .reveal {
+
+      opacity: 0;
+
+      transform:
+        translateY(35px);
+
+      transition:
+        opacity 1s ease,
+        transform 1s ease;
+    }
+
+
+    .reveal.visible {
+
+      opacity: 1;
+
+      transform:
+        translateY(0);
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media(max-width: 650px) {
+
+      nav {
+
+        width: 94%;
+
+        gap: 14px;
+
+        padding: 13px 12px;
+      }
+
+
+      nav a {
+
+        font-size: 9px;
+      }
+
+
+      .hero h1 {
+
+        font-size: 90px;
+      }
+
+
+      .moon {
+
+        width: 90px;
+        height: 90px;
+      }
+
+
+      .moon::before {
+
+        transform:
+          scale(.8);
+      }
+
+
+      .cards {
+
+        grid-template-columns: 1fr;
+      }
+
+
+      section {
+
+        padding: 80px 0;
+      }
+
+
+      .section-title {
+
+        font-size: 45px;
+      }
+
+
+      .thought,
+      .letter {
+
+        padding: 30px;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- =================================
+       LIVE STAR SKY
+  ================================== -->
+
+  <div id="starSky"></div>
+
+
+  <!-- =================================
+       NAVIGATION
+  ================================== -->
+
+  <nav>
+
+    <a href="#about">about</a>
+
+    <a href="#world">my world</a>
+
+    <a href="#thoughts">thoughts</a>
+
+    <a href="#dreams">dreams</a>
+
+    <a href="#letter">letter</a>
+
+  </nav>
+
+
+  <!-- =================================
+       HERO
+  ================================== -->
+
+  <header class="hero">
+
+    <div class="hero-content">
+
+      <div class="moon"></div>
+
+      <h1>Madiha</h1>
+
+      <p class="hero-subtitle">
+        a little corner of the universe that belongs to me
+      </p>
+
+      <div class="scroll-text">
+        ↓ &nbsp; scroll slowly &nbsp; ↓
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- =================================
+       ABOUT
+  ================================== -->
+
+  <section
+    id="about"
+    class="reveal"
+  >
+
+    <h2 class="section-title">
+      about me
+    </h2>
+
+    <p class="section-description">
+
+      Just a girl figuring things out,
+      collecting little moments,
+      finding beauty in quiet places,
+      and becoming someone she is proud of —
+      one day at a time.
+
+    </p>
+
+  </section>
+
+
+  <!-- =================================
+       MY WORLD
+  ================================== -->
+
+  <section
+    id="world"
+    class="reveal"
+  >
+
+    <h2 class="section-title">
+      my world
+    </h2>
+
+
+    <div class="cards">
+
+
+      <div class="card">
+
+        <span class="card-label">
+          01 — music
+        </span>
+
+        <h3>
+          songs that feel like me
+        </h3>
+
+        <p>
+          The kind of songs you listen to
+          late at night when everything
+          feels a little quieter.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <span class="card-label">
+          02 — little things
+        </span>
+
+        <h3>
+          the details matter
+        </h3>
+
+        <p>
+          Rainy evenings, soft lights,
+          long conversations, pretty skies
+          and peaceful moments.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <span class="card-label">
+          03 — personality
+        </span>
+
+        <h3>
+          soft, but not simple
+        </h3>
+
+        <p>
+          There is a whole universe
+          behind the quiet parts of me.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <span class="card-label">
+          04 — currently
+        </span>
+
+        <h3>
+          living slowly
+        </h3>
+
+        <p>
+          Learning, growing, dreaming
+          and trying not to rush
+          everything beautiful.
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- =================================
+       THOUGHTS
+  ================================== -->
+
+  <section
+    id="thoughts"
+    class="reveal"
+  >
+
+    <h2 class="section-title">
+      little thoughts
+    </h2>
+
+
+    <div class="thought">
+
+      <p>
+
+        “Maybe life doesn't have to be
+        figured out all at once.
+        Maybe it is enough to simply
+        keep becoming.”
+
+      </p>
+
+      <small>
+        — a thought from Madiha
+      </small>
+
+    </div>
+
+  </section>
+
+
+  <!-- =================================
+       DREAMS
+  ================================== -->
+
+  <section
+    id="dreams"
+    class="reveal"
+  >
+
+    <h2 class="section-title">
+      dreams
+    </h2>
+
+
+    <p class="section-description">
+
+      Things I want to see,
+      feel, experience and become.
+
+    </p>
+
+
+    <div class="dreams">
+
+      <div class="dream">
+        travel somewhere beautiful
+      </div>
+
+      <div class="dream">
+        watch the stars
+      </div>
+
+      <div class="dream">
+        build something meaningful
+      </div>
+
+      <div class="dream">
+        make unforgettable memories
+      </div>
+
+      <div class="dream">
+        be proud of myself
+      </div>
+
+      <div class="dream">
+        live peacefully
+      </div>
+
+      <div class="dream">
+        keep learning
+      </div>
+
+      <div class="dream">
+        be happy for no reason
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =================================
+       LETTER
+  ================================== -->
+
+  <section
+    id="letter"
+    class="reveal"
+  >
+
+    <h2 class="section-title">
+      a letter to myself
+    </h2>
+
+
+    <div class="letter">
+
+      <p>
+        Dear Madiha,
+      </p>
+
+
+      <p>
+
+        I hope you remember that you don't
+        have to have everything figured out.
+
+        You are allowed to change your mind,
+        start over, take breaks and grow
+        at your own pace.
+
+      </p>
+
+
+      <p>
+
+        Keep your heart soft.
+        Keep your curiosity alive.
+
+        Notice the little things.
+
+        And don't forget to enjoy the life
+        you are so busy trying to build.
+
+      </p>
+
+
+      <p>
+
+        Wherever you end up,
+        I hope you can look back and know
+        that you tried, you lived,
+        and you were completely yourself.
+
+      </p>
+
+
+      <div class="signature">
+        — Madiha ♡
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =================================
+       FOOTER
+  ================================== -->
+
+  <footer>
+
+    made quietly, just for me
+    · Madiha · ✦
+
+  </footer>
+
+
+  <script>
+
+    /* =================================
+       CREATE LIVE STARS
+    ================================= */
+
+    const starSky =
+      document.getElementById("starSky");
+
+
+    const STAR_COUNT = 220;
+
+
+    for (
+      let i = 0;
+      i < STAR_COUNT;
+      i++
+    ) {
+
+      const star =
+        document.createElement("div");
+
+
+      star.classList.add("star");
+
+
+      /* Random position */
+
+      star.style.left =
+        Math.random() * 100 + "%";
+
+
+      star.style.top =
+        Math.random() * 100 + "%";
+
+
+      /* Random size */
+
+      const size =
+        Math.random() * 2.5 + 0.5;
+
+
+      star.style.width =
+        size + "px";
+
+
+      star.style.height =
+        size + "px";
+
+
+      /* Random animation speed */
+
+      star.style.setProperty(
+        "--twinkleTime",
+        (Math.random() * 4 + 2) + "s"
+      );
+
+
+      /* Random animation delay */
+
+      star.style.animationDelay =
+        (Math.random() * 5) + "s";
+
+
+      starSky.appendChild(star);
+
+    }
+
+
+    /* =================================
+       SHOOTING STARS
+    ================================= */
+
+    function createShootingStar() {
+
+      const shootingStar =
+        document.createElement("div");
+
+
+      shootingStar.classList.add(
+        "shooting-star"
+      );
+
+
+      /* Start from random location */
+
+      shootingStar.style.left =
+        (Math.random() * 100 + 10) + "%";
+
+
+      shootingStar.style.top =
+        (Math.random() * 55) + "%";
+
+
+      starSky.appendChild(
+        shootingStar
+      );
+
+
+      /* Remove after animation */
+
+      setTimeout(() => {
+
+        shootingStar.remove();
+
+      }, 1800);
+
+    }
+
+
+    /* New shooting star every few seconds */
+
+    function randomShootingStar() {
+
+      createShootingStar();
+
+
+      const nextTime =
+        Math.random() * 5000 + 3000;
+
+
+      setTimeout(
+        randomShootingStar,
+        nextTime
+      );
+
+    }
+
+
+    /* Start shooting stars */
+
+    setTimeout(
+      randomShootingStar,
+      2500
+    );
+
+
+    /* =================================
+       SCROLL REVEAL
+    ================================= */
+
+    const revealElements =
+      document.querySelectorAll(
+        ".reveal"
+      );
+
+
+    const observer =
+      new IntersectionObserver(
+
+        (entries) => {
+
+          entries.forEach(
+            (entry) => {
+
+              if (
+                entry.isIntersecting
+              ) {
+
+                entry.target.classList.add(
+                  "visible"
+                );
+
+              }
+
+            }
+          );
+
+        },
+
+        {
+          threshold: 0.12
+        }
+
+      );
+
+
+    revealElements.forEach(
+      (element) => {
+
+        observer.observe(element);
+
+      }
+    );
+
+
+    /* =================================
+       SUBTLE MOUSE STAR MOVEMENT
+    ================================= */
+
+    document.addEventListener(
+      "mousemove",
+      (event) => {
+
+        const x =
+          (event.clientX /
+            window.innerWidth -
+            0.5) * 8;
+
+
+        const y =
+          (event.clientY /
+            window.innerHeight -
+            0.5) * 8;
+
+
+        starSky.style.transform =
+          `translate(${x}px, ${y}px)`;
+
+      }
+    );
+
+  </script>
+
+
+</body>
+</html>
